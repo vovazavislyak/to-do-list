@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ToDoList.Models;
 
 namespace ToDoList.Data
 {
@@ -13,20 +14,32 @@ namespace ToDoList.Data
             new ToDoItem(3, "JS", "", DateTime.MinValue)
         };
 
-        public IEnumerable<ToDoItem> GetAllTask()
-        {
-            return _items;
-        }
+        public IEnumerable<ToDoItem> GetAllTask() => _items;
 
         public void AddTask(ToDoItem item)
         {
-            item.Id = _items.Max(x => x.Id) + 1;
+            item.Id = (_items.Any() ?
+                _items.Max(x => x.Id) : 0) + 1;
             _items.Add(item);
         }
 
-        public void ChangeIsCompleted(int id, bool isCompleted)
+        public void ChangeIsCompleted(int id, bool isCompleted) =>
+            GetById(id).IsCompleted = isCompleted;
+
+        public void EditTask(ToDoItem changedItem)
         {
-            _items.First(x => x.Id == id).IsCompleted = isCompleted;
+            var item = GetById(changedItem.Id);
+            var index = _items.IndexOf(item);
+            _items[index] = changedItem;
+        }
+
+        public ToDoItem GetById(int id) => 
+            _items.First(x => x.Id == id);
+
+        public void Remove(int id)
+        {
+            var item = GetById(id);
+            _items.Remove(item);
         }
     }
 }

@@ -10,5 +10,11 @@ namespace ToDoList.Data
         void AddTask(ToDoItem item);
 
         void ChangeIsCompleted(int id, bool isCompleted);
+
+        void EditTask(ToDoItem changedItem);
+
+        ToDoItem GetById(int id);
+
+        void Remove(int id);
     }
 }

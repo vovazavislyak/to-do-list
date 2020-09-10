@@ -9,9 +9,9 @@ namespace ToDoList.Data
             return new ToDoItemModel(item.Id, item.Name, item.Description, item.Deadline, item.IsCompleted);;
         }
         
-        public static ToDoItem Map(ToDoItemModel item)
+        public static ToDoItem Map(ToDoItemModel model)
         {
-            return new ToDoItem(item.Id, item.Name, item.Description, item.Deadline);
+            return new ToDoItem(model.Id, model.Name, model.Description, model.Deadline);
         }
     }
 }

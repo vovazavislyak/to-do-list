@@ -81,8 +81,20 @@ a, a:hover{
   margin-right: 140px;
 }
 
+.buttons > * {
+  margin-left: 20px;
+  outline: none;
+  border: none;
+  padding: 5px 10px;
+}
+
 .submit__btn {
   margin-left: 20px;
+  background-color: green;
+}
+
+.remove__btn {
+  background-color: red;
 }
 
 .is__completed {
@@ -96,6 +108,19 @@ a, a:hover{
 .additional__info {
   margin-left: 18px;
 }
+
+.empty__list-info {
+  font-size: 26px;
+}
+
+
+
+
+
+
+
+
+
 /*#add__modal {*/
 /*  display: none;*/
 /*  position: fixed; !* Stay in place *!*/
