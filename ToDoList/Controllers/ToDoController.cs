@@ -75,6 +75,7 @@ namespace ToDoList.Controllers
 
         public IActionResult RemoveTask(int id)
         {
+            Debug.WriteLine($"RemoveTask: id - {id}");
             _toDoRepository.Remove(id);
             
             return RedirectToAction("GetAllTask");

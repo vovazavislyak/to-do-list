@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using ToDoList.Models;
 
@@ -11,7 +12,12 @@ namespace ToDoList.Data
         {
             new ToDoItem(1, "English", "Description", DateTime.Parse("18.09.2020 18:00")),
             new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
-            new ToDoItem(3, "JS", "", DateTime.MinValue)
+            new ToDoItem(3, "JS", "", DateTime.MinValue),
+            new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
+            new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
+            new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
+            new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
+            new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
         };
 
         public IEnumerable<ToDoItem> GetAllTask() => _items;
@@ -33,11 +39,15 @@ namespace ToDoList.Data
             _items[index] = changedItem;
         }
 
-        public ToDoItem GetById(int id) => 
-            _items.First(x => x.Id == id);
+        public ToDoItem GetById(int id)
+        {
+            Debug.WriteLine($"GetById: id - {id}");
+            return _items.First(x => x.Id == id);
+        }
 
         public void Remove(int id)
         {
+            Debug.WriteLine($"ToDoRepository.Remove: id - {id}");
             var item = GetById(id);
             _items.Remove(item);
         }

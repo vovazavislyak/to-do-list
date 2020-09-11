@@ -1,5 +1,7 @@
 ﻿@model ToDoItemModel
 
+<div class="main__title">Task editing</div>
+
 <div class="error" asp-validation-summary="ModelOnly"></div>
 <form class="add__form" asp-action="EditTask" asp-controller="ToDo">
     <input asp-for="Id">

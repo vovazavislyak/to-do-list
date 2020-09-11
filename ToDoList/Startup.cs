@@ -48,7 +48,7 @@ namespace ToDoList
             {
                 endpoints.MapControllerRoute(
                     "default",
-                    "{controller=Home}/{action=Index}/{id?}");
+                    "{controller=ToDo}/{action=GetAllTask}");
             });
         }
     }
