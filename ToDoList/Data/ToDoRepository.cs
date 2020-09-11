@@ -13,11 +13,11 @@ namespace ToDoList.Data
             new ToDoItem(1, "English", "Description", DateTime.Parse("18.09.2020 18:00")),
             new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
             new ToDoItem(3, "JS", "", DateTime.MinValue),
-            new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
-            new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
-            new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
-            new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
-            new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
+            new ToDoItem(4, "ASP.Net in Action", "", DateTime.MinValue),
+            new ToDoItem(5, "ASP.Net in Action", "", DateTime.MinValue),
+            new ToDoItem(6, "ASP.Net in Action", "", DateTime.MinValue),
+            new ToDoItem(7, "ASP.Net in Action", "", DateTime.MinValue),
+            new ToDoItem(8, "ASP.Net in Action", "", DateTime.MinValue),
         };
 
         public IEnumerable<ToDoItem> GetAllTask() => _items;
