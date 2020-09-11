@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Data;
@@ -27,7 +28,7 @@ namespace ToDoList.Controllers
 
         public IActionResult AddTask(ToDoItemModel model)
         {
-            if (string.IsNullOrWhiteSpace(model.Name))
+            if (!CheckModel(model))
                 return View();
             var item = Mapper.Map(model);
             _toDoRepository.AddTask(item);
@@ -35,6 +36,18 @@ namespace ToDoList.Controllers
             return RedirectToAction(nameof(GetAllTask));
         }
 
+        private bool CheckModel(ToDoItemModel model)
+        {
+            if (string.IsNullOrWhiteSpace(model.Name))
+                return false;
+            if (model.Deadline != DateTime.MinValue && model.Deadline < DateTime.Now)
+            {
+                ModelState.AddModelError("", "Incorect date");
+                return false;
+            }
+            return true;
+        }
+        
         public IActionResult ChangeIsCompleted(int id, bool isCompleted)
         {
             _toDoRepository.ChangeIsCompleted(id, isCompleted);
@@ -42,7 +55,7 @@ namespace ToDoList.Controllers
             return RedirectToAction("GetAllTask");
         }
 
-        public IActionResult StartEditTask(int id)
+        public IActionResult EditTaskForm(int id)
         {
             var item = _toDoRepository.GetById(id);
             var model = Mapper.Map(item);
@@ -52,7 +65,7 @@ namespace ToDoList.Controllers
         
         public IActionResult EditTask(ToDoItemModel model)
         {
-            if (string.IsNullOrWhiteSpace(model.Name))
+            if (!CheckModel(model))
                 return View();
             
             _toDoRepository.EditTask(Mapper.Map(model));

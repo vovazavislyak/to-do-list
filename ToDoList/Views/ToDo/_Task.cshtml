@@ -1,21 +1,22 @@
 ﻿@model ToDoItemModel
 
-<a href="@Url.Action("StartEditTask", new { id = Model.Id})">
+<a href="@Url.Action("EditTaskForm", new { id = Model.Id})">
     <form class="is__completed" asp-controller="ToDo" asp-action="ChangeIsCompleted">
         <input onChange="this.form.submit()"
                type="checkbox" asp-for="IsCompleted">
         <input type="hidden" asp-for="Id" value="@Model.Id">
     </form>
-
-    <span>@Model.Name</span>
-    <div class="additional__info">
-        @if (!string.IsNullOrWhiteSpace(Model.Description))
-        {
-            <div>@Model.Description</div>
-        }
-        @if (Model.Deadline != DateTime.MinValue)
-        {
-            <div>Deadline: @Model.Deadline</div>
-        }
+    <div class="task__info">
+        <span class="todo__item-title">@Model.Name</span>
+        <div class="additional__info">
+            @if (!string.IsNullOrWhiteSpace(Model.Description))
+            {
+                <div class="description">@Model.Description</div>
+            }
+            @if (Model.Deadline != DateTime.MinValue)
+            {
+                <div class="deadline">Deadline: @Model.Deadline</div>
+            }
+        </div>
     </div>
 </a>

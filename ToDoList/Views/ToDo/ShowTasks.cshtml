@@ -8,12 +8,12 @@
 
 @if (!Model.Any())
 {
-    <div class="empty__list-info">There are no tasks in the list.</div>
+    <div class="info__title">There are no tasks in the list.</div>
 }
 @if (unfinishedTasks.Any())
 {
-    <div>Unfinished tasks</div>
-    <ul>
+    <div class="info__title">Unfinished tasks</div>
+    <ul class="task__list">
         @foreach (var item in unfinishedTasks)
         {
             <li class="todo__item">
@@ -24,8 +24,8 @@
 }
 @if (complitedTasks.Any())
 {
-    <div class="completed__task">Completed tasks</div>
-    <ul>
+    <div class="info__title">Completed tasks ✓</div>
+    <ul class="task__list">
         @foreach (var item in complitedTasks)
         {
             <li class="todo__item completed__task">

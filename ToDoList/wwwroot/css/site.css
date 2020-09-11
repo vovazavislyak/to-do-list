@@ -33,6 +33,7 @@ a, a:hover{
   width: 50px;
   height: 50px;
   position: relative;
+  transition: all .3s;
 }
 
 .add__btn::before {
@@ -46,6 +47,12 @@ a, a:hover{
   line-height: 40px;
   outline: none;
   text-align: center;
+  transition: all .3s;
+}
+
+.add__btn:hover::before {
+  font-size: 60px;
+  line-height: 35px;
 }
 
 .add__btn:focus {
@@ -60,16 +67,34 @@ a, a:hover{
 .todo__item {
   cursor: pointer;
   margin: 10px 0;
+  background-color: antiquewhite;
+  border-radius: 25px;
+  padding: 10px 25px;
 }
 
+.add__form,
+.validation-summary-errors{
+  max-width: 750px;
+  margin: 0 auto;
+}
+.validation-summary-errors li {
+  margin-left: -40px;
+}
 .add__form button  {
   border-radius: 10px;
 }
 
 .add__form input,
 .add__form textarea {
-  width: 85%;
+  width: 100%;
   display: block;
+  padding: 5px 15px;
+  border-radius: 10px;
+}
+
+.add__form input:focus,
+.add__form textarea:focus {
+  outline: none;
 }
 
 .add__form .form-group {
@@ -78,7 +103,6 @@ a, a:hover{
 
 .buttons {
   float: right;
-  margin-right: 140px;
 }
 
 .buttons > * {
@@ -87,7 +111,9 @@ a, a:hover{
   border: none;
   padding: 5px 10px;
 }
-
+.buttons > *:focus {
+  outline: none;
+}
 .submit__btn {
   margin-left: 20px;
   background-color: green;
@@ -99,27 +125,60 @@ a, a:hover{
 
 .is__completed {
   display: inline;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
-
+.task__info {
+  margin-left: 30px;
+}
 .completed__task {
-  color: darkgreen;
+  background-color: #8fd19e;  
 }
 
-.additional__info {
-  margin-left: 18px;
+.todo__item a {
+  display: block;
+  width: 100%;
 }
 
-.empty__list-info {
-  font-size: 26px;
+.task__list {
+  list-style: none;
 }
 
+.task__list a {
+  text-decoration: none;
+  position: relative;
+}
 
+.info__title {
+  text-align: center;
+  font-size: 22px;
+}
 
+.validation-summary-errors {
+  font-size: 22px;
+}
 
+.validation-summary-errors ul {
+  list-style: none;
+}
 
+.deadline {
+  text-align: right;
+}
 
+.todo__item-title {
+  font-size: 18px;
+}
 
+.description {
+  margin-top: 10px;
+  max-width: 750px;
+}
 
+input[type=checkbox] {
+  transform: scale(1.5);
+}
 
 /*#add__modal {*/
 /*  display: none;*/

@@ -15,4 +15,11 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\css\fonts\icomoon.eot" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\fonts\icomoon.svg" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\fonts\icomoon.ttf" />
+      <_ContentIncludedByDefault Remove="wwwroot\css\fonts\icomoon.woff" />
+    </ItemGroup>
+
 </Project>
