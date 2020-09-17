@@ -1,0 +1,35 @@
+﻿@model ToDoItemModel
+
+<div class="modal">
+    <div class="modal__content">
+        <div class="close">&times;</div>
+        <div class="main__title">Adding new task</div>
+
+        <div class="error" asp-validation-summary="ModelOnly"></div>
+        <form class="add__form" asp-action="AddTask" asp-controller="ToDo">
+            <input asp-for="Id">
+            <div class="form-group">
+                <label asp-for="Name">Task name*</label>
+                <input asp-for="Name">
+                <span class="error" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea rows="4" asp-for="Description"></textarea>
+                <span class="error" asp-validation-for="Description"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Deadline">
+                    Date and time (if you don't need deadline, then don't change this field)
+                </label>
+                <input asp-for="Deadline"/>
+                <span class="error" asp-validation-for="Deadline"></span>
+            </div>
+            <div class="buttons">
+                <button type="reset">Reset</button>
+                <button class="submit__btn" type="submit">Add</button>
+            </div>
+            <div>*Required</div>
+        </form>
+    </div>
+</div>

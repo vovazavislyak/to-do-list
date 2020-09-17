@@ -19,12 +19,10 @@ namespace ToDoList.Controllers
         public IActionResult GetAllTask(ToDoItemModel model)
         {
             var items = _toDoRepository.GetAllTask()
-                .Select(Mapper.Map);
+                .Select(Mapper.Map).ToList();
             
             return View("ShowTasks", items);
         }
-
-        public IActionResult GiveAddTaskView() => View("AddTask");
 
         public IActionResult AddTask(ToDoItemModel model)
         {
@@ -39,7 +37,10 @@ namespace ToDoList.Controllers
         private bool CheckModel(ToDoItemModel model)
         {
             if (string.IsNullOrWhiteSpace(model.Name))
+            {
+                ModelState.AddModelError("", "Name is required");
                 return false;
+            }
             if (model.Deadline != DateTime.MinValue && model.Deadline < DateTime.Now)
             {
                 ModelState.AddModelError("", "Incorect date");
@@ -53,14 +54,6 @@ namespace ToDoList.Controllers
             _toDoRepository.ChangeIsCompleted(id, isCompleted);
             
             return RedirectToAction("GetAllTask");
-        }
-
-        public IActionResult EditTaskForm(int id)
-        {
-            var item = _toDoRepository.GetById(id);
-            var model = Mapper.Map(item);
-            
-            return View("EditTask", model);
         }
         
         public IActionResult EditTask(ToDoItemModel model)

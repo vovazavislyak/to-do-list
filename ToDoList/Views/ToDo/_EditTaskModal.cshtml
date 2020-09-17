@@ -1,0 +1,35 @@
+﻿@model ToDoItemModel
+
+<div class="modal" id="modal_@Model.Id">
+    <div class="modal__content">
+        <span class="close">&times;</span>
+        <div class="main__title">Task editing</div>
+
+        <div class="error" asp-validation-summary="ModelOnly"></div>
+        <form class="add__form" asp-action="EditTask" asp-controller="ToDo">
+            <input asp-for="Id">
+            <div class="form-group">
+                <label asp-for="Name">Task name*</label>
+                <input asp-for="Name">
+                <span class="error" asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <textarea rows="4" asp-for="Description"></textarea>
+                <span class="error" asp-validation-for="Description"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Deadline"></label>
+                <input asp-for="Deadline"/>
+                <span class="error" asp-validation-for="Deadline"></span>
+            </div>
+            <input name="IsCompleted" type="hidden" value="@Model.IsCompleted.ToString().ToLower()">
+            <div class="buttons">
+                <button type="reset">Reset</button>
+                <button class="remove__btn" asp-action="RemoveTask">Remove</button>
+                <button class="submit__btn" type="submit">Aply</button>
+            </div>
+            <div>*Required</div>
+        </form>
+    </div>
+</div>

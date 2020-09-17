@@ -1,9 +1,9 @@
-﻿@model IEnumerable<ToDoItemModel>
+﻿@model List<ToDoItemModel>
 
 @{
     ViewData["Title"] = "To Do List";
-    var unfinishedTasks = Model.Where(item => !item.IsCompleted);
-    var complitedTasks = Model.Where(item => item.IsCompleted);
+    var unfinishedTasks = Model.Where(item => !item.IsCompleted).ToList();
+    var complitedTasks = Model.Where(item => item.IsCompleted).ToList();
 }
 
 @if (!Model.Any())
@@ -35,28 +35,7 @@
     </ul>
 }
 
-
-@* <div id="add__modal"> *@
-@*     <div class="add__modal-content"> *@
-@*         <span class="close">&times;</span> *@
-@*         <form asp-action="AddTask" asp-controller="ToDo"> *@
-@*             <div class="form-group"> *@
-@*                 <label asp-for="Name"></label> *@
-@*                 <input type="text" asp-for="Name"> *@
-@*                 <span asp-validation-for="Name"></span> *@
-@*             </div> *@
-@*             <div class="form-group"> *@
-@*                 <label asp-for="Description"></label> *@
-@*                 <textarea cols="30" rows="5" asp-for="Description"></textarea> *@
-@*                 <span asp-validation-for="Description"></span> *@
-@*             </div> *@
-@*             <div class="form-group"> *@
-@*                 <label asp-for="Deadline"></label> *@
-@*                 <input type="datetime-local" asp-for="Deadline"/> *@
-@*                 <span asp-validation-for="Deadline"></span> *@
-@*             </div> *@
-@*             <button class="submit__btn" type="submit">Add</button> *@
-@*         </form> *@
-@*         <div>*Only name required</div> *@
-@*     </div> *@
-@* </div> *@
+@foreach(var item in Model)
+{
+    @await Html.PartialAsync("~/Views/ToDo/_EditTaskModal.cshtml", item);
+}

@@ -6,7 +6,7 @@
 <form class="add__form" asp-action="EditTask" asp-controller="ToDo">
     <input asp-for="Id">
     <div class="form-group">
-        <label asp-for="Name"></label>
+        <label asp-for="Name">Task name*</label>
         <input asp-for="Name">
         <span class="error" asp-validation-for="Name"></span>
     </div>

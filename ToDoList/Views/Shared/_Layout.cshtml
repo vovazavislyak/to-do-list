@@ -17,7 +17,8 @@
                     To Do List
                 </a>
             </div>
-            <a href="@Url.Action("GiveAddTaskView", "ToDo")" class="add__btn"></a>
+            @* <a href="@Url.Action("GiveAddTaskView", "ToDo")" class="add__btn"></a> *@
+            <a class="add__btn"></a>
         </div>
     </div>
 </header>
@@ -28,7 +29,13 @@
     </div>
 </section>
 
+<section class="add__modal">
+    @await Html.PartialAsync("~/Views/ToDo/_AddTaskModal.cshtml",
+        new ToDoItemModel(0, "Task", "", DateTime.MinValue))
+</section>
+
 <footer class="footer"></footer>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/main.js" asp-append-version="true"></script>

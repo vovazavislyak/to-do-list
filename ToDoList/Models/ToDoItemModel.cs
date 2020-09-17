@@ -11,13 +11,12 @@ namespace ToDoList.Models
         [HiddenInput]
         public int Id { get; set; }
         
-        [Required]
-        [Display(Name = "Task name*")]
+        [Display(Name = "Task name")]
         public string Name { get; set; }
         
         [Display(Name = "Task description")]
         public string Description { get; set; }
-
+        
         [Display(Name = "Date and time")]
         public DateTime Deadline { get; set; }
         

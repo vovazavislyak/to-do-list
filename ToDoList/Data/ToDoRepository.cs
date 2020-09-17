@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using ToDoList.Models;
 
 namespace ToDoList.Data
 {
@@ -13,13 +12,8 @@ namespace ToDoList.Data
             new ToDoItem(1, "English", "Description", DateTime.Parse("18.09.2020 18:00")),
             new ToDoItem(2, "ASP.Net in Action", "", DateTime.MinValue),
             new ToDoItem(3, "JS", "", DateTime.MinValue),
-            new ToDoItem(4, "ASP.Net in Action", "", DateTime.MinValue),
-            new ToDoItem(5, "ASP.Net in Action", "", DateTime.MinValue),
-            new ToDoItem(6, "ASP.Net in Action", "", DateTime.MinValue),
-            new ToDoItem(7, "ASP.Net in Action", "", DateTime.MinValue),
-            new ToDoItem(8, "ASP.Net in Action", "", DateTime.MinValue),
         };
-
+        
         public IEnumerable<ToDoItem> GetAllTask() => _items;
 
         public void AddTask(ToDoItem item)
@@ -41,7 +35,6 @@ namespace ToDoList.Data
 
         public ToDoItem GetById(int id)
         {
-            Debug.WriteLine($"GetById: id - {id}");
             return _items.First(x => x.Id == id);
         }
 

@@ -11,7 +11,7 @@ namespace ToDoList.Data
         
         public static ToDoItem Map(ToDoItemModel model)
         {
-            return new ToDoItem(model.Id, model.Name, model.Description, model.Deadline);
+            return new ToDoItem(model.Id, model.Name, model.Description, model.Deadline, model.IsCompleted);
         }
     }
 }
