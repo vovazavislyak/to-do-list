@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Data;
@@ -18,7 +17,8 @@ namespace ToDoList.Controllers
         
         public IActionResult GetAllTask(ToDoItemModel model)
         {
-            var items = _toDoRepository.GetAllTask()
+            var items = _toDoRepository
+                .GetAllTask()
                 .Select(Mapper.Map).ToList();
             
             return View("ShowTasks", items);
@@ -28,6 +28,7 @@ namespace ToDoList.Controllers
         {
             if (!CheckModel(model))
                 return View();
+            
             var item = Mapper.Map(model);
             _toDoRepository.AddTask(item);
             
@@ -36,17 +37,18 @@ namespace ToDoList.Controllers
 
         private bool CheckModel(ToDoItemModel model)
         {
+            var isValid = true;
             if (string.IsNullOrWhiteSpace(model.Name))
             {
                 ModelState.AddModelError("", "Name is required");
-                return false;
+                isValid = false;
             }
             if (model.Deadline != DateTime.MinValue && model.Deadline < DateTime.Now)
             {
                 ModelState.AddModelError("", "Incorect date");
-                return false;
+                isValid = false;
             }
-            return true;
+            return isValid;
         }
         
         public IActionResult ChangeIsCompleted(int id, bool isCompleted)
@@ -68,7 +70,6 @@ namespace ToDoList.Controllers
 
         public IActionResult RemoveTask(int id)
         {
-            Debug.WriteLine($"RemoveTask: id - {id}");
             _toDoRepository.Remove(id);
             
             return RedirectToAction("GetAllTask");

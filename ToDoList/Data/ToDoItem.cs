@@ -5,6 +5,7 @@ namespace ToDoList.Data
     public class ToDoItem
     {
         public int Id { get; set; }
+        
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -14,7 +15,7 @@ namespace ToDoList.Data
         public bool IsCompleted { get; set; }
         
         public ToDoItem(int id, string name, string description,
-                        DateTime deadline, bool isCompleted = false)
+                        DateTime deadline = default, bool isCompleted = false)
         {
             Id = id;
             Name = name;

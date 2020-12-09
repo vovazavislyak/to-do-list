@@ -23,7 +23,7 @@
                 <input asp-for="Deadline"/>
                 <span class="error" asp-validation-for="Deadline"></span>
             </div>
-            <input name="IsCompleted" type="hidden" value="@Model.IsCompleted.ToString().ToLower()">
+            <input asp-for="IsCompleted" type="hidden">
             <div class="buttons">
                 <button type="reset">Reset</button>
                 <button class="remove__btn" asp-action="RemoveTask">Remove</button>

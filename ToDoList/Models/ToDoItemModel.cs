@@ -25,7 +25,7 @@ namespace ToDoList.Models
         public ToDoItemModel() {}
         
         public ToDoItemModel(int id, string name, string description,
-                             DateTime deadline, bool isCompleted = false)
+                             DateTime deadline = default, bool isCompleted = false)
         {
             Id = id;
             Name = name;
