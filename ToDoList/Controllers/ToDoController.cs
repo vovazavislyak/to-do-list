@@ -40,12 +40,12 @@ namespace ToDoList.Controllers
             var isValid = true;
             if (string.IsNullOrWhiteSpace(model.Name))
             {
-                ModelState.AddModelError("", "Name is required");
+                ModelState.AddModelError(nameof(ToDoItemModel.Name), "Name is required");
                 isValid = false;
             }
             if (model.Deadline != DateTime.MinValue && model.Deadline < DateTime.Now)
             {
-                ModelState.AddModelError("", "Incorect date");
+                ModelState.AddModelError(nameof(ToDoItemModel.Deadline), "Incorect date");
                 isValid = false;
             }
             return isValid;
