@@ -9,8 +9,8 @@ namespace ToDoList.Data
         private readonly List<ToDoItem> _items = new List<ToDoItem>
         {
             new ToDoItem(1, "English", "Description", DateTime.Parse("18.09.2020 18:00")),
-            new ToDoItem(2, "ASP.Net in Action", ""),
-            new ToDoItem(3, "JS", ""),
+            new ToDoItem(2, "ASP.Net in Action"),
+            new ToDoItem(3, "JS")
         };
         
         public IEnumerable<ToDoItem> GetAllTask() => _items;

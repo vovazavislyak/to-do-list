@@ -18,14 +18,14 @@ namespace ToDoList.Models
         public string Description { get; set; }
         
         [Display(Name = "Date and time")]
-        public DateTime Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
         
         public bool IsCompleted { get; set; }
         
         public ToDoItemModel() {}
         
-        public ToDoItemModel(int id, string name, string description,
-                             DateTime deadline = default, bool isCompleted = false)
+        public ToDoItemModel(int id, string name, string description = "",
+                             DateTime? deadline = default, bool isCompleted = false)
         {
             Id = id;
             Name = name;

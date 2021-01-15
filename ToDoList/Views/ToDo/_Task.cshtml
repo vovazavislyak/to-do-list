@@ -13,7 +13,7 @@
         {
             <div class="description">@Model.Description</div>
         }
-        @if (Model.Deadline != DateTime.MinValue)
+        @if (Model.Deadline != null)
         {
             <div class="deadline">Deadline: @Model.Deadline</div>
         }

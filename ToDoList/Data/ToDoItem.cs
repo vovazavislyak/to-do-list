@@ -10,12 +10,12 @@ namespace ToDoList.Data
 
         public string Description { get; set; }
 
-        public DateTime Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
 
         public bool IsCompleted { get; set; }
         
-        public ToDoItem(int id, string name, string description,
-                        DateTime deadline = default, bool isCompleted = false)
+        public ToDoItem(int id, string name, string description = "",
+                        DateTime? deadline = default, bool isCompleted = false)
         {
             Id = id;
             Name = name;
