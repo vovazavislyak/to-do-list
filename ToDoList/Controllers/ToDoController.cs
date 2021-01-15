@@ -15,7 +15,7 @@ namespace ToDoList.Controllers
             _toDoRepository = toDoRepository;
         }
 
-        public IActionResult GetAllTask(ToDoItemModel model)
+        public IActionResult GetAllTask()
         {
             var items = _toDoRepository
                 .GetAllTask()
@@ -26,31 +26,13 @@ namespace ToDoList.Controllers
 
         public IActionResult AddTask(ToDoItemModel model)
         {
-            if (!CheckModel(model))
-                return View();
+            if (!ModelState.IsValid)
+                return View(model);
 
             var item = Mapper.Map(model);
             _toDoRepository.AddTask(item);
 
             return RedirectToAction(nameof(GetAllTask));
-        }
-
-        private bool CheckModel(ToDoItemModel model)
-        {
-            var isValid = true;
-            if (string.IsNullOrWhiteSpace(model.Name))
-            {
-                ModelState.AddModelError(nameof(ToDoItemModel.Name), "Name is required");
-                isValid = false;
-            }
-
-            if (model.Deadline != null && model.Deadline < DateTime.Now)
-            {
-                ModelState.AddModelError(nameof(ToDoItemModel.Deadline), "Incorect date");
-                isValid = false;
-            }
-
-            return isValid;
         }
 
         public IActionResult ChangeIsCompleted(int id, bool isCompleted)
@@ -62,8 +44,8 @@ namespace ToDoList.Controllers
 
         public IActionResult EditTask(ToDoItemModel model)
         {
-            if (!CheckModel(model))
-                return View();
+            if (!ModelState.IsValid)
+                return View(model);
 
             _toDoRepository.EditTask(Mapper.Map(model));
 
