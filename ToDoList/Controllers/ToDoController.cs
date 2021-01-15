@@ -58,5 +58,12 @@ namespace ToDoList.Controllers
 
             return RedirectToAction(nameof(GetAllTask));
         }
+
+        public IActionResult ResetDeadline(ToDoItemModel model)
+        {
+            model.Deadline = null;
+
+            return RedirectToAction(nameof(EditTask), model);
+        }
     }
 }
