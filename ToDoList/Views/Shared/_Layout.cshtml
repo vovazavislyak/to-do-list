@@ -1,4 +1,5 @@
 ﻿@using ToDoList.ViewModels
+@using System.Security.Claims
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,17 @@
                     To Do List
                 </a>
             </div>
-            <a class="add__btn"></a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <p class="header__title">Hi, @User.FindFirstValue(ClaimsIdentity.DefaultNameClaimType)</p>
+                <a style="font-size: 40px" asp-controller="Account" asp-action="Logout">Logout</a>
+                
+                <a class="add__btn"></a>
+            }
+            else
+            {
+                <a class="header__title" asp-controller="Account" asp-action="Login">Login</a>
+            }
         </div>
     </div>
 </header>
