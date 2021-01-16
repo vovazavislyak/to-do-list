@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ToDoList.Models
+namespace ToDoList.ViewModels
 {
-    public class ToDoItemModel : IValidatableObject
+    public class ToDoItemViewModel : IValidatableObject
     {
 
         [HiddenInput] 
@@ -22,9 +22,9 @@ namespace ToDoList.Models
 
         public bool IsCompleted { get; set; }
         
-        public ToDoItemModel() { }
+        public ToDoItemViewModel() { }
 
-        public ToDoItemModel(int id, string name, string description = "",
+        public ToDoItemViewModel(int id, string name, string description = "",
             DateTime? deadline = default, bool isCompleted = false)
         {
             Id = id;

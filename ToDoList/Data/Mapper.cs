@@ -1,17 +1,18 @@
 ﻿using ToDoList.Models;
+using ToDoList.ViewModels;
 
 namespace ToDoList.Data
 {
     public static class Mapper
     {
-        public static ToDoItemModel Map(ToDoItem item)
+        public static ToDoItemViewModel Map(ToDoItem item)
         {
-            return new ToDoItemModel(item.Id, item.Name, item.Description, item.Deadline, item.IsCompleted);;
+            return new ToDoItemViewModel(item.Id, item.Name, item.Description, item.Deadline, item.IsCompleted);;
         }
         
-        public static ToDoItem Map(ToDoItemModel model)
+        public static ToDoItem Map(ToDoItemViewModel viewModel)
         {
-            return new ToDoItem(model.Id, model.Name, model.Description, model.Deadline, model.IsCompleted);
+            return new ToDoItem(viewModel.Id, viewModel.Name, viewModel.Description, viewModel.Deadline, viewModel.IsCompleted);
         }
     }
 }

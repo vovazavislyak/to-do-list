@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Data;
 using ToDoList.Models;
+using ToDoList.ViewModels;
 
 namespace ToDoList.Controllers
 {
@@ -24,12 +25,12 @@ namespace ToDoList.Controllers
             return View("ShowTasks", items);
         }
 
-        public IActionResult AddTask(ToDoItemModel model)
+        public IActionResult AddTask(ToDoItemViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return View(model);
+                return View(viewModel);
 
-            var item = Mapper.Map(model);
+            var item = Mapper.Map(viewModel);
             _toDoRepository.AddTask(item);
 
             return RedirectToAction(nameof(GetAllTask));
@@ -42,12 +43,12 @@ namespace ToDoList.Controllers
             return RedirectToAction(nameof(GetAllTask));
         }
 
-        public IActionResult EditTask(ToDoItemModel model)
+        public IActionResult EditTask(ToDoItemViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return View(model);
+                return View(viewModel);
 
-            _toDoRepository.EditTask(Mapper.Map(model));
+            _toDoRepository.EditTask(Mapper.Map(viewModel));
 
             return RedirectToAction(nameof(GetAllTask));
         }
@@ -59,11 +60,11 @@ namespace ToDoList.Controllers
             return RedirectToAction(nameof(GetAllTask));
         }
 
-        public IActionResult ResetDeadline(ToDoItemModel model)
+        public IActionResult ResetDeadline(ToDoItemViewModel viewModel)
         {
-            model.Deadline = null;
+            viewModel.Deadline = null;
 
-            return RedirectToAction(nameof(EditTask), model);
+            return RedirectToAction(nameof(EditTask), viewModel);
         }
     }
 }
