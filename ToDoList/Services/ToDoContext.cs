@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ToDoList.Models;
 
-namespace ToDoList.Data
+namespace ToDoList.Services
 {
     public sealed class ToDoContext : DbContext
     {

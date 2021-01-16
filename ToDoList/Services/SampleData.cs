@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using ToDoList.Models;
 
-namespace ToDoList.Data
+namespace ToDoList.Services
 {
     public static class SampleData
     {

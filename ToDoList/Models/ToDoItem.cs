@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ToDoList.Data
+namespace ToDoList.Models
 {
     public class ToDoItem
     {

@@ -1,6 +1,7 @@
-﻿using ToDoList.ViewModels;
+﻿using ToDoList.Models;
+using ToDoList.ViewModels;
 
-namespace ToDoList.Data
+namespace ToDoList.Services
 {
     public static class Mapper
     {

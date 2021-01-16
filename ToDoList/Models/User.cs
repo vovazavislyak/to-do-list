@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ToDoList.Data
+namespace ToDoList.Models
 {
     public class User
     {

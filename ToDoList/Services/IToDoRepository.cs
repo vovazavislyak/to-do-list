@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ToDoList.Models;
 
-namespace ToDoList.Data
+namespace ToDoList.Services
 {
     public interface IToDoRepository
     {
