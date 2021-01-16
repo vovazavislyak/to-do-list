@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using ToDoList.Data;
-using ToDoList.Models;
+using ToDoList.ViewModels;
 
 namespace ToDoList.Controllers
 {

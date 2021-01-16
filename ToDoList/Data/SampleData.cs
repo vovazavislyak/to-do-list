@@ -2,7 +2,7 @@
 
 namespace ToDoList.Data
 {
-    public class SampleData
+    public static class SampleData
     {
         public static void Initialize(ToDoContext context)
         {

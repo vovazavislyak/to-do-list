@@ -1,5 +1,4 @@
-﻿using ToDoList.Models;
-using ToDoList.ViewModels;
+﻿using ToDoList.ViewModels;
 
 namespace ToDoList.Data
 {
@@ -7,7 +6,7 @@ namespace ToDoList.Data
     {
         public static ToDoItemViewModel Map(ToDoItem item)
         {
-            return new ToDoItemViewModel(item.Id, item.Name, item.Description, item.Deadline, item.IsCompleted);;
+            return new ToDoItemViewModel(item.Id, item.Name, item.Description, item.Deadline, item.IsCompleted);
         }
         
         public static ToDoItem Map(ToDoItemViewModel viewModel)
