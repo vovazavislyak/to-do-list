@@ -13,6 +13,15 @@ namespace ToDoList.Data
         public DateTime? Deadline { get; set; }
 
         public bool IsCompleted { get; set; }
+
+        public int UserId { get; set; }
+
+        public User User { get; set; }
+
+        public ToDoItem()
+        {
+            
+        }
         
         public ToDoItem(int id, string name, string description = "",
                         DateTime? deadline = default, bool isCompleted = false)
