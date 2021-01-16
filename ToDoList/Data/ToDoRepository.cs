@@ -1,45 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ToDoList.Data
 {
     public class ToDoRepository : IToDoRepository
     {
-        private readonly List<ToDoItem> _items = new List<ToDoItem>
-        {
-            new ToDoItem(1, "English", "Description", DateTime.Parse("18.09.2020 18:00")),
-            new ToDoItem(2, "ASP.Net in Action"),
-            new ToDoItem(3, "JS")
-        };
-        
-        public IEnumerable<ToDoItem> GetAllTask() => _items;
+        private readonly ToDoContext _context;
 
-        public void AddTask(ToDoItem item)
+        public ToDoRepository(ToDoContext context)
         {
-            item.Id = (_items.Any() ? _items.Max(x => x.Id) : 0) + 1;
-            _items.Add(item);
+            _context = context;
         }
 
-        public void ChangeIsCompleted(int id, bool isCompleted) =>
-            GetById(id).IsCompleted = isCompleted;
+        public IEnumerable<ToDoItem> GetAllTask(int userId) => 
+            _context.ToDoItems.Where(item => item.UserId == userId);
 
-        public void EditTask(ToDoItem changedItem)
+        public async Task AddTaskAsync(ToDoItem item)
         {
-            var item = GetById(changedItem.Id);
-            var index = _items.IndexOf(item);
-            _items[index] = changedItem;
+            await _context.ToDoItems.AddAsync(item);
+            await _context.SaveChangesAsync();
         }
 
-        public ToDoItem GetById(int id)
+        public async Task ChangeIsCompletedAsync(int id, bool isCompleted)
         {
-            return _items.First(x => x.Id == id);
+            var item = await GetByIdAsync(id);
+            
+            item.IsCompleted = isCompleted;
+
+            await _context.SaveChangesAsync();
         }
 
-        public void Remove(int id)
+        public async Task EditTaskAsync(ToDoItem changedItem)
         {
-            var item = GetById(id);
-            _items.Remove(item);
+            _context.ToDoItems.Update(changedItem);
+
+            await _context.SaveChangesAsync();
+        }
+
+        private async Task<ToDoItem> GetByIdAsync(int id)
+        {
+            return await _context.ToDoItems.FirstAsync(x => x.Id == id);
+        }
+
+        public async Task RemoveAsync(int id)
+        {
+            _context.ToDoItems.Remove(new ToDoItem {Id = id});
+
+            await _context.SaveChangesAsync();
         }
     }
 }

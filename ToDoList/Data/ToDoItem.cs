@@ -17,20 +17,5 @@ namespace ToDoList.Data
         public int UserId { get; set; }
 
         public User User { get; set; }
-
-        public ToDoItem()
-        {
-            
-        }
-        
-        public ToDoItem(int id, string name, string description = "",
-                        DateTime? deadline = default, bool isCompleted = false)
-        {
-            Id = id;
-            Name = name;
-            Description = description;
-            Deadline = deadline;
-            IsCompleted = isCompleted;
-        }
     }
 }

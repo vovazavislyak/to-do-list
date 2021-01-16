@@ -32,7 +32,7 @@
 
 <section class="add__modal">
     @await Html.PartialAsync("~/Views/ToDo/_AddTaskModal.cshtml",
-        new ToDoItemViewModel(0, "Task"))
+        new ToDoItemViewModel {Name = "Task"})
 </section>
 
 <footer class="footer"></footer>

@@ -21,18 +21,6 @@ namespace ToDoList.ViewModels
         public DateTime? Deadline { get; set; }
 
         public bool IsCompleted { get; set; }
-        
-        public ToDoItemViewModel() { }
-
-        public ToDoItemViewModel(int id, string name, string description = "",
-            DateTime? deadline = default, bool isCompleted = false)
-        {
-            Id = id;
-            Name = name;
-            Description = description;
-            Deadline = deadline;
-            IsCompleted = isCompleted;
-        }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

@@ -6,12 +6,27 @@ namespace ToDoList.Data
     {
         public static ToDoItemViewModel Map(ToDoItem item)
         {
-            return new ToDoItemViewModel(item.Id, item.Name, item.Description, item.Deadline, item.IsCompleted);
+            return new ToDoItemViewModel
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Description = item.Description,
+                Deadline = item.Deadline,
+                IsCompleted = item.IsCompleted
+            };
         }
         
-        public static ToDoItem Map(ToDoItemViewModel viewModel)
+        public static ToDoItem Map(ToDoItemViewModel viewModel, int userId)
         {
-            return new ToDoItem(viewModel.Id, viewModel.Name, viewModel.Description, viewModel.Deadline, viewModel.IsCompleted);
+            return new ToDoItem
+            {
+                Id = viewModel.Id,
+                Name = viewModel.Name,
+                Description = viewModel.Description,
+                Deadline = viewModel.Deadline,
+                IsCompleted = viewModel.IsCompleted,
+                UserId = userId
+            };
         }
     }
 }

@@ -20,11 +20,12 @@ namespace ToDoList
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IToDoRepository, ToDoRepository>();
+            
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ToDoContext>(options => options.UseSqlServer(connection));
             
             services.AddControllersWithViews();
-            services.AddSingleton<IToDoRepository, ToDoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

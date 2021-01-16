@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ToDoList.Data
 {
     public interface IToDoRepository
     {
-        IEnumerable<ToDoItem> GetAllTask();
+        IEnumerable<ToDoItem> GetAllTask(int userId);
 
-        void AddTask(ToDoItem item);
+        Task AddTaskAsync(ToDoItem item);
 
-        void ChangeIsCompleted(int id, bool isCompleted);
+        Task ChangeIsCompletedAsync(int id, bool isCompleted);
 
-        void EditTask(ToDoItem changedItem);
+        Task EditTaskAsync(ToDoItem changedItem);
 
-        ToDoItem GetById(int id);
-
-        void Remove(int id);
+        Task RemoveAsync(int id);
     }
 }
