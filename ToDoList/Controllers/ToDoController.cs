@@ -20,7 +20,7 @@ namespace ToDoList.Controllers
         {
             var items = _toDoRepository
                 .GetAllTask(CurrentUserId)
-                .Select(Mapper.Map).ToList();
+                .Select(Mapper.Map);
 
             return View("ShowTasks", items);
         }
