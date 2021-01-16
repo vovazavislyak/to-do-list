@@ -37,7 +37,7 @@ namespace ToDoList.Controllers
                 return View(model);
             }
 
-            var user = new User {Email = model.Email, Password = model.Password};
+            var user = new User {Email = model.Email, Name = model.Name, Password = model.Password};
 
             await _userRepository.AddUserAsync(user);
 
@@ -81,7 +81,7 @@ namespace ToDoList.Controllers
             var claims = new List<Claim>
             {
                 new Claim(nameof(Models.User.Id), user.Id.ToString()),
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email)
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Name)
             };
 
             var identity = new ClaimsIdentity(claims, "ApplicationCookie",

@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,11 +23,15 @@ namespace ToDoList
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IToDoRepository, ToDoRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ToDoContext>(options => options.UseSqlServer(connection));
             
             services.AddControllersWithViews();
+            
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => options.LoginPath = new PathString("/Account/Login"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +52,9 @@ namespace ToDoList
             app.UseStaticFiles();
 
             app.UseRouting();
+            
+            app.UseAuthentication(); 
+            app.UseAuthorization();
 
             app.UseAuthorization();
 

@@ -1,15 +1,17 @@
 ﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Services;
 using ToDoList.ViewModels;
 
 namespace ToDoList.Controllers
 {
+    [Authorize]
     public class ToDoController : Controller
     {
         private readonly IToDoRepository _toDoRepository;
-        private const int CurrentUserId = 1;
 
         public ToDoController(IToDoRepository toDoRepository)
         {
@@ -18,8 +20,10 @@ namespace ToDoList.Controllers
 
         public IActionResult GetAllTask()
         {
+            var currentUserId = int.Parse(User.FindFirstValue(nameof(Models.User.Id)));
+            
             var items = _toDoRepository
-                .GetAllTask(CurrentUserId)
+                .GetAllTask(currentUserId)
                 .Select(Mapper.Map);
 
             return View("ShowTasks", items);
@@ -29,8 +33,9 @@ namespace ToDoList.Controllers
         {
             if (!ModelState.IsValid)
                 return View(viewModel);
-
-            var item = Mapper.Map(viewModel, CurrentUserId);
+            
+            var currentUserId = int.Parse(User.FindFirstValue(nameof(Models.User.Id)));
+            var item = Mapper.Map(viewModel, currentUserId);
             await _toDoRepository.AddTaskAsync(item);
 
             return RedirectToAction(nameof(GetAllTask));
@@ -47,8 +52,9 @@ namespace ToDoList.Controllers
         {
             if (!ModelState.IsValid)
                 return View(viewModel);
-
-            await _toDoRepository.EditTaskAsync(Mapper.Map(viewModel, CurrentUserId));
+            
+            var currentUserId = int.Parse(User.FindFirstValue(nameof(Models.User.Id)));
+            await _toDoRepository.EditTaskAsync(Mapper.Map(viewModel, currentUserId));
 
             return RedirectToAction(nameof(GetAllTask));
         }

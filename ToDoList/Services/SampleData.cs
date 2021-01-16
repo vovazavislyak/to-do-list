@@ -14,7 +14,7 @@ namespace ToDoList.Services
 
             context.Users.Add(new User
             {
-                Email = "login", Name = "User", Password = "1111", 
+                Email = "login@g.com", Name = "User", Password = "1111", 
                 ToDoItems = new [] {new ToDoItem {Name = "Task", UserId = 1}}
             });
 
