@@ -5,12 +5,12 @@ namespace ToDoList.Services
 {
     public interface IUserRepository
     {
-        bool ContainsUserWithEmail(string email);
+        Task<bool> ContainsUserWithEmailAsync(string email);
 
         Task AddUserAsync(User user);
 
-        bool IsCorrectEmailAndPassword(string email, string password);
+        Task<bool> IsCorrectEmailAndPasswordAsync(string email, string password);
         
-        User GetUser(string email);
+        Task<User> GetUserAsync(string email);
     }
 }

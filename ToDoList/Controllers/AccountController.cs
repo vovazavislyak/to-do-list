@@ -31,7 +31,7 @@ namespace ToDoList.Controllers
         {
             if (!ModelState.IsValid) return View(model);
             
-            if (_userRepository.ContainsUserWithEmail(model.Email))
+            if (await _userRepository.ContainsUserWithEmailAsync(model.Email))
             {
                 ModelState.AddModelError("", "Incorrect login and (or) password");
                 return View(model);
@@ -58,9 +58,9 @@ namespace ToDoList.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (_userRepository.IsCorrectEmailAndPassword(model.Email, model.Password))
+            if (await _userRepository.IsCorrectEmailAndPasswordAsync(model.Email, model.Password))
             {
-                var user = _userRepository.GetUser(model.Email);
+                var user = await _userRepository.GetUserAsync(model.Email);
                 
                 await Authenticate(user);
                 
