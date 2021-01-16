@@ -13,7 +13,7 @@ namespace ToDoList.Data
 
             context.Users.Add(new User
             {
-                Login = "login", Name = "User", Password = "1111", 
+                Email = "login", Name = "User", Password = "1111", 
                 ToDoItems = new [] {new ToDoItem {Name = "Task", UserId = 1}}
             });
 
