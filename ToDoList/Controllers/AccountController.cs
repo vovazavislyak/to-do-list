@@ -14,6 +14,8 @@ namespace ToDoList.Controllers
     {
         private readonly IUserRepository _userRepository;
 
+        public static int CurrentUserId { get; private set; }
+
         public AccountController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
@@ -30,7 +32,7 @@ namespace ToDoList.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (!ModelState.IsValid) return View(model);
-            
+
             if (await _userRepository.ContainsUserWithEmailAsync(model.Email))
             {
                 ModelState.AddModelError("", "Incorrect login and (or) password");
@@ -61,11 +63,12 @@ namespace ToDoList.Controllers
             if (await _userRepository.IsCorrectEmailAndPasswordAsync(model.Email, model.Password))
             {
                 var user = await _userRepository.GetUserAsync(model.Email);
-                
+
                 await Authenticate(user);
-                
+
                 return RedirectToAction(nameof(ToDoController.GetAllTask), "ToDo");
             }
+
             ModelState.AddModelError("", "Incorrect login and(or) password");
             return View(model);
         }
@@ -78,11 +81,8 @@ namespace ToDoList.Controllers
 
         private async Task Authenticate(User user)
         {
-            var claims = new List<Claim>
-            {
-                new Claim(nameof(Models.User.Id), user.Id.ToString()),
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Name)
-            };
+            CurrentUserId = user.Id;
+            var claims = new List<Claim> {new Claim(ClaimsIdentity.DefaultNameClaimType, user.Name)};
 
             var identity = new ClaimsIdentity(claims, "ApplicationCookie",
                 ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);

@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +19,7 @@ namespace ToDoList.Controllers
 
         public IActionResult GetAllTask()
         {
-            var currentUserId = int.Parse(User.FindFirstValue(nameof(Models.User.Id)));
+            var currentUserId = AccountController.CurrentUserId;
             
             var items = _toDoRepository
                 .GetAllTask(currentUserId)
@@ -34,7 +33,7 @@ namespace ToDoList.Controllers
             if (!ModelState.IsValid)
                 return View(viewModel);
             
-            var currentUserId = int.Parse(User.FindFirstValue(nameof(Models.User.Id)));
+            var currentUserId = AccountController.CurrentUserId;
             var item = Mapper.Map(viewModel, currentUserId);
             await _toDoRepository.AddTaskAsync(item);
 
@@ -53,7 +52,7 @@ namespace ToDoList.Controllers
             if (!ModelState.IsValid)
                 return View(viewModel);
             
-            var currentUserId = int.Parse(User.FindFirstValue(nameof(Models.User.Id)));
+            var currentUserId = AccountController.CurrentUserId;
             await _toDoRepository.EditTaskAsync(Mapper.Map(viewModel, currentUserId));
 
             return RedirectToAction(nameof(GetAllTask));
